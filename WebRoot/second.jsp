@@ -75,17 +75,17 @@
 	
 	
 	s0 = CommonUtil.convertString(s0);
-s1 = CommonUtil.convertString(s1);
-s2 = CommonUtil.convertString(s2);
-s3 = CommonUtil.convertString(s3);
-s4 = CommonUtil.convertString(s4);
-s5 = CommonUtil.convertString(s5);
-s6 = CommonUtil.convertString(s6);
-s7 = CommonUtil.convertString(s7);
-s8 = CommonUtil.convertString(s8);
-s9 = CommonUtil.convertString(s9);
-s10 = CommonUtil.convertString(s10);
-s11 = CommonUtil.convertString(s11);
+	s1 = CommonUtil.convertString(s1);
+	s2 = CommonUtil.convertString(s2);
+	s3 = CommonUtil.convertString(s3);
+	s4 = CommonUtil.convertString(s4);
+	s5 = CommonUtil.convertString(s5);
+	s6 = CommonUtil.convertString(s6);
+	s7 = CommonUtil.convertString(s7);
+	s8 = CommonUtil.convertString(s8);
+	s9 = CommonUtil.convertString(s9);
+	s10 = CommonUtil.convertString(s10);
+	s11 = CommonUtil.convertString(s11);
 s12 = CommonUtil.convertString(s12);
 s13 = CommonUtil.convertString(s13);
 s14 = CommonUtil.convertString(s14);
@@ -143,9 +143,9 @@ s59 = CommonUtil.convertString(s59);
 	+ s40 + s41 + s42 + s43 + s44 + s45 + s46 + s47 + s48 + s49
 	+ s50 + s51 + s52 + s53 + s54 + s55 + s56 + s57 + s58 + s59;
 	try{
-	subjectService.saveScore(name, score);
+		subjectService.saveScore(name, score);
 	}catch(Exception e){
-	info = "您的微博名可能输入的不正确，请重新再来一次！";
+		info = "您的微博名可能输入的不正确，请重新再来一次！";
 	}
 %>
 
