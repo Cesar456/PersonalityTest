@@ -8,8 +8,8 @@
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl"
 			value="jdbc:mysql://115.29.55.54/b5test?characterEncoding=UTF-8" />
-		<property name="user" value="root" />
-		<property name="password" value="chen724467110" />
+		<property name="user" value="***" />
+		<property name="password" value="**" />
 		<property name="initialPoolSize" value="1" />
 		<property name="minPoolSize" value="1" />
 		<property name="maxPoolSize" value="40" />
