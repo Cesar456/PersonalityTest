@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="com.cesar.per.util.CommonUtil"%>
 <%@page import="com.cesar.per.bean.Subject"%>
 <%@page import="com.cesar.per.service.SigletonService"%>
@@ -142,23 +144,97 @@ s59 = CommonUtil.convertString(s59);
 	+ s30 + s31 + s32 + s33 + s34 + s35 + s36 + s37 + s38 + s39
 	+ s40 + s41 + s42 + s43 + s44 + s45 + s46 + s47 + s48 + s49
 	+ s50 + s51 + s52 + s53 + s54 + s55 + s56 + s57 + s58 + s59;
+	
+	List<String> results = new ArrayList<String>();
 	try{
-		subjectService.saveScore(name, score);
+		results = subjectService.saveScore(name, score);
 	}catch(Exception e){
 		info = "您的微博名可能输入的不正确，请重新再来一次！";
 	}
+	
+	String a = "无结果";
+	String b = "无结果";
+	String c = "无结果";
+	String d = "无结果";
+	String e = "无结果";
+	
+	if(results.size()==5){
+		a = results.get(0);
+		b = results.get(1);
+		c = results.get(2);
+		d = results.get(3);
+		e = results.get(4);
+	}
+	
 %>
 
 
 <html lang="en" class="no-js">
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href='http://fonts.useso.com/css?family=Ubuntu:400,700'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/modernizr.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title><%=name%>,谢谢您的支持</title>
 </head>
 <body>
-<%=info %>
-<h2>谢谢</h2>
+	<section id="cd-table"> 
+	<header class="cd-table-column">
+	<h2>特质</h2>
+	<ul>
+		<li>神经质</li>
+		<li>外倾性</li>
+		<li>经验开放性</li>
+		<li>宜人性</li>
+		<li>认真性</li>
+	</ul>
+	</header>
+
+	<div class="cd-table-container">
+		<div class="cd-table-wrapper">
+			<div class="cd-table-column_de">
+				<h2>高分者特征</h2>
+				<ul>
+					<li>烦恼、紧张、情绪化、不安全、不准确、忧郁</li>
+					<li>好社交、活跃、健谈、乐群、乐观、重感情</li>
+					<li>兴趣广泛、有创造力、富于想象、非传统的</li>
+					<li>心肠软、信任人，宽宏大量、易轻信、直率</li>
+					<li>可靠、勤奋、自律、细心、整洁、有抱负、有毅力</li>
+				</ul>
+			</div>
+
+			<div class="cd-table-column_de">
+				<h2>低分者特质</h2>
+				<ul>
+					<li>平静、放松、不情绪化、果敢，安全、自我陶醉</li>
+					<li>谨慎、冷静、无精打采、冷淡、退让、话少</li>
+					<li>习俗化、讲实际、兴趣少、无艺术性、非分析性</li>
+					<li>粗鲁、多疑、报复心重、残忍、易怒、好操纵别人</li>
+					<li>无目标、懒惰、粗心、忪懈、意志弱、享乐</li>
+				</ul>
+			</div>
+			<!-- cd-table-column -->
+
+			<div class="cd-table-column">
+				<h2><%=name %>的得分</h2>
+				<ul>
+					<li><%=a %>/5</li>
+					<li><%=b %>/5</li>
+					<li><%=c %>/5</li>
+					<li><%=d %>/5</li>
+					<li><%=e %>/5</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<em class="cd-scroll-right"></em> </section>
+
+	<script
+		src="http://ajax.useso.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>

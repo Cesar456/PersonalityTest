@@ -17,15 +17,15 @@ public class JXLUtil {
 	
 	private static final String excelPath = "C:\\Users\\Cesar\\Desktop\\per.xls";
 	
-	private static final int[] neuroticism = {1,6,11,16,21,26,31,36,41,46,51,56};
-	private static final int[] extraversion = {2,7,12,17,22,27,32,37,42,47,52,57};
-	private static final int[] openness = {3,8,13,18,23,28,33,38,43,48,53,58};
-	private static final int[] agreeablenessFacets = {4,9,14,19,24,29,34,39,44,49,54,59};
-	private static final int[] conscientiousness = {5,10,15,20,25,30,35,40,45,50,55,60};
+	public static final int[] neuroticism = {1,6,11,16,21,26,31,36,41,46,51,56};
+	public static final int[] extraversion = {2,7,12,17,22,27,32,37,42,47,52,57};
+	public static final int[] openness = {3,8,13,18,23,28,33,38,43,48,53,58};
+	public static final int[] agreeablenessFacets = {4,9,14,19,24,29,34,39,44,49,54,59};
+	public static final int[] conscientiousness = {5,10,15,20,25,30,35,40,45,50,55,60};
 
 	private static final int[] aginstS = {1,9,12,14,15,16,18,19,23,24,27,28,30,31,33,39,42,44,45,46,48,54,55,57,59};
 	
-	private static int getDe(int no){
+	public static int getDe(int no){
 		
 		for(int i:neuroticism){
 			if(i==no){

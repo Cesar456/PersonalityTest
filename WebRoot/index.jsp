@@ -39,7 +39,7 @@
 					</li>
 					<%
 						for(int i=0;i<subjects.size();i++){
-												Subject subject = subjects.get(i);
+							Subject subject = subjects.get(i);
 					%>
 					<li data-input-trigger><label
 						class="fs-field-label fs-anim-upper" for="q<%=i%>"

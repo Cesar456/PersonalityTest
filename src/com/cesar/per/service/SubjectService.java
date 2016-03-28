@@ -1,5 +1,6 @@
 package com.cesar.per.service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +10,12 @@ import com.cesar.per.bean.UserScore;
 import com.cesar.per.util.JXLUtil;
 
 public class SubjectService extends BaseService {
-	
+
 	private static final int SUBJECTLENGTH = 60;
 
-	public boolean saveScore(String userName, String allScore) throws Exception {
+	private DecimalFormat df = new DecimalFormat("0.00");
+
+	public List<String> saveScore(String userName, String allScore) throws Exception {
 		User user = new User();
 		List<User> users = getUserDAO().findByUserName(userName);
 		if (users.size() == 0 || users == null) {
@@ -28,7 +31,7 @@ public class SubjectService extends BaseService {
 
 		List<UserScore> userScores = new ArrayList<UserScore>();
 		for (int i = 0; i < scores.length; i++) {
-			int subjectId = i+1;
+			int subjectId = i + 1;
 			int score = Integer.parseInt(String.valueOf(scores[i]));
 			if (JXLUtil.isAginst(subjectId) == 1) {
 				score = 6 - score;
@@ -40,22 +43,76 @@ public class SubjectService extends BaseService {
 			getUserScoreDAO().save(userScore);
 			userScores.add(userScore);
 		}
-		return true;
+		return getResult(userScores);
 	}
-	
+
 	/**
 	 * 返回用户的性格测试结果
+	 * 
 	 * @param userScores
 	 * @return
 	 */
-	private List<Double> getResult(List<UserScore> userScores){
-		
-		
-		return null;
-		
+	public List<String> getResult(List<UserScore> userScores) {
+
+		List<String> result = new ArrayList<String>();
+
+		int neuroticismTotle = 0;
+		int extraversionTotle = 0;
+		int opennessTotle = 0;
+		int agreeablenessFacetsTotle = 0;
+		int conscientiousnessTotle = 0;
+
+		for (UserScore userScore : userScores) {
+			int i = JXLUtil.getDe(userScore.getSubjectId());
+			switch (i) {
+			case 1:
+				neuroticismTotle += userScore.getScore();
+				break;
+			case 2:
+				extraversionTotle += userScore.getScore();
+				break;
+			case 3:
+				opennessTotle += userScore.getScore();
+				break;
+			case 4:
+				agreeablenessFacetsTotle += userScore.getScore();
+				break;
+			case 5:
+				conscientiousnessTotle += userScore.getScore();
+				break;
+			default:
+				break;
+			}
+		}
+
+		double neuroticismResult = (double) neuroticismTotle
+				/ (double) JXLUtil.neuroticism.length;
+		double extraversionResult = (double) extraversionTotle
+				/ (double) JXLUtil.extraversion.length;
+		double opennessResult = (double) opennessTotle
+				/ (double) JXLUtil.openness.length;
+		double agreeablenessFacetsResult = (double) agreeablenessFacetsTotle
+				/ (double) JXLUtil.agreeablenessFacets.length;
+		double conscientiousnessResult = (double) conscientiousnessTotle
+				/ (double) JXLUtil.conscientiousness.length;
+
+		System.out.println(neuroticismResult);
+		System.out.println(extraversionResult);
+		System.out.println(opennessResult);
+		System.out.println(agreeablenessFacetsResult);
+		System.out.println(conscientiousnessResult);
+
+		result.add(df.format(neuroticismResult));
+		result.add(df.format(extraversionResult));
+		result.add(df.format(opennessResult));
+		result.add(df.format(agreeablenessFacetsResult));
+		result.add(df.format(conscientiousnessResult));
+
+		return result;
+
 	}
-	
-	public List<Subject> getSubjects(){
+
+	public List<Subject> getSubjects() {
 		List<Subject> subjects = getSubjectDAO().findAll();
 		return subjects;
 	}
