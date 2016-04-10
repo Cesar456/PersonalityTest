@@ -98,7 +98,7 @@
 		<button id="tupBtn" class="turnplatw_btn"></button>
 	</div>
 	<div>
-	<input id="userName" type="hidden" value="<%= name%>" >
+	<input id="userName" type="text" value="<%= name%>" >
 	</div>
 	<!-- 更改系统默认弹窗 -->
 	<script type="text/javascript">
