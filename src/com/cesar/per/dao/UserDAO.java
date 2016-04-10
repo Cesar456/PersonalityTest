@@ -120,6 +120,17 @@ public class UserDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+	
+	public void update(User detachedInstance) {
+		log.debug("update User instance");
+		try {
+			getHibernateTemplate().update(detachedInstance);
+			log.debug("update successful");
+		} catch (RuntimeException re) {
+			log.error("update failed", re);
+			throw re;
+		}
+	}
 
 	public void attachDirty(User instance) {
 		log.debug("attaching dirty User instance");

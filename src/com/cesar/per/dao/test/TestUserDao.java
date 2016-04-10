@@ -18,7 +18,13 @@ public class TestUserDao extends TestCase {
 	UserScoreDAO userScoreDAO = context.getBean(UserScoreDAO.class);
 	
 	public void test1(){
-		getUser();
+		updateUser();
+	}
+
+	private void updateUser() {
+		User user = userDAO.findById(30);
+		user.setPrize(1);
+		userDAO.update(user);
 	}
 
 	public void saveUser() {
@@ -26,6 +32,7 @@ public class TestUserDao extends TestCase {
 		user.setId(0);
 		user.setUserName("Cesar");
 		user.setUuid("123");
+		user.setPrize(5);
 		userDAO.save(user);
 	}
 	

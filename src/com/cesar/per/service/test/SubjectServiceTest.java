@@ -16,16 +16,25 @@ public class SubjectServiceTest extends TestCase {
 	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	public void testCal(){
 		SubjectService service = context.getBean(SubjectService.class);
-		
+		lotteryTest(service);
+	}
+	
+	private void lotteryTest(SubjectService service){
+			try {
+				service.lottery("山中乔木",1);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+	
+	private void subjectSaveTest(SubjectService service) {
 		List<UserScore> userScores = new ArrayList<UserScore>();
-		
 		for(int i = 0;i<60;i++){
 			UserScore userScore = new UserScore();
 			userScore.setScore(3);
 			userScore.setSubjectId(i+1);
 			userScores.add(userScore);
 		}
-		
 		List<String> doubles = service.getResult(userScores);
 		for(String double1:doubles){
 			System.out.println(double1);

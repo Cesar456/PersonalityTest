@@ -15,7 +15,8 @@ public class SubjectService extends BaseService {
 
 	private DecimalFormat df = new DecimalFormat("0.00");
 
-	public List<String> saveScore(String userName, String allScore) throws Exception {
+	public List<String> saveScore(String userName, String allScore)
+			throws Exception {
 		User user = new User();
 		List<User> users = getUserDAO().findByUserName(userName);
 		if (users.size() == 0 || users == null) {
@@ -110,6 +111,27 @@ public class SubjectService extends BaseService {
 
 		return result;
 
+	}
+
+	/**
+	 * 该方法返回该用户的中奖等级
+	 * @param userName
+	 * @return
+	 * @throws Exception 
+	 */
+	public void lottery(String userName, int prizeClass) throws Exception {
+		User user = new User();
+		List<User> users = getUserDAO().findByUserName(userName);
+		if(prizeClass>7||prizeClass<0){
+			prizeClass = 0;
+		}
+		if (users != null&&users.size()>0) {
+			user = users.get(0);
+		} else {
+			throw new Exception("The user is not exists");
+		}
+		user.setPrize(prizeClass);
+		getUserDAO().update(user);
 	}
 
 	public List<Subject> getSubjects() {

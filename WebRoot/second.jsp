@@ -7,13 +7,14 @@
 <%@ page language="java" pageEncoding="UTF-8"%> 
 <%@ page contentType="text/html;charset=UTF-8"%> 
 <%
-
 	SubjectService subjectService = SigletonService.getSubjectService();
-	
 	String info = "";
-
-	String name = new String(request.getParameter("qx").getBytes("ISO-8859-1"),"utf-8") ;
-
+	String name = null;
+	try{
+	name = new String(request.getParameter("qx").getBytes("ISO-8859-1"),"utf-8") ;
+	}catch(Exception e){
+		response.sendRedirect("index.jsp");
+	}
 	String s0 = request.getParameter("q0");
 	String s1 = request.getParameter("q1");
 	String s2 = request.getParameter("q2");
@@ -177,6 +178,9 @@ s59 = CommonUtil.convertString(s59);
 	rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<script src="http://ajax.useso.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/lottery.js"></script>
 <script src="js/modernizr.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title><%=name%>,谢谢您的支持</title>
@@ -232,9 +236,62 @@ s59 = CommonUtil.convertString(s59);
 		</div>
 	</div>
 	<em class="cd-scroll-right"></em> </section>
-
 	<script
 		src="http://ajax.useso.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="js/main.js"></script>
+	
+	<div class="turnplate_box">
+		<canvas id="myCanvas" width="300px" height="300px">抱歉！浏览器不支持。</canvas>
+		<canvas id="myCanvas01" width="200px" height="200px">抱歉！浏览器不支持。</canvas>
+		<canvas id="myCanvas03" width="200px" height="200px">抱歉！浏览器不支持。</canvas>
+		<canvas id="myCanvas02" width="150px" height="150px">抱歉！浏览器不支持。</canvas>
+		<button id="tupBtn" class="turnplatw_btn"></button>
+	</div>
+	<div>
+	<input id="userName" type="hidden" value="<%= name%>" >
+	</div>
+	<!-- 更改系统默认弹窗 -->
+	<script type="text/javascript">
+	window.alert = function(str)
+	{
+		var shield = document.createElement("DIV");
+		shield.id = "shield";
+		shield.style.position = "absolute";
+		shield.style.left = "50%";
+		shield.style.top = "50%";
+		shield.style.width = "280px";
+		shield.style.height = "150px";
+		shield.style.marginLeft = "-140px";
+		shield.style.marginTop = "-110px";
+		shield.style.zIndex = "25";
+		var alertFram = document.createElement("DIV");
+		alertFram.id="alertFram";
+		alertFram.style.position = "absolute";
+		alertFram.style.width = "280px";
+		alertFram.style.height = "150px";
+		alertFram.style.left = "50%";
+		alertFram.style.top = "50%";
+		alertFram.style.marginLeft = "-140px";
+		alertFram.style.marginTop = "-110px";
+		alertFram.style.textAlign = "center";
+		alertFram.style.lineHeight = "150px";
+		alertFram.style.zIndex = "300";
+		strHtml = "<ul style=\"list-style:none;margin:0px;padding:0px;width:100%\">\n";
+		strHtml += " <li style=\"background:#626262;text-align:left;padding-left:20px;font-size:14px;font-weight:bold;height:25px;line-height:25px;border:1px solid #F9CADE;color:white\">[中奖提醒]</li>\n";
+		strHtml += " <li style=\"background:#787878;text-align:center;font-size:12px;height:95px;line-height:95px;border-left:1px solid #F9CADE;border-right:1px solid #F9CADE;color:#DCC722\">"+str+"</li>\n";
+		strHtml += " <li style=\"background:#626262;text-align:center;font-weight:bold;height:30px;line-height:25px; border:1px solid #F9CADE;\"><input type=\"button\" value=\"确 定\" onclick=\"doOk()\" style=\"width:80px;height:20px;background:#626262;color:white;border:1px solid white;font-size:14px;line-height:20px;outline:none;margin-top: 4px\"/></li>\n";
+		strHtml += "</ul>\n";
+		alertFram.innerHTML = strHtml;
+		document.body.appendChild(alertFram);
+		document.body.appendChild(shield);
+		this.doOk = function(){
+			alertFram.style.display = "none";
+			shield.style.display = "none";
+		}
+		alertFram.focus();
+		document.body.onselectstart = function(){return false;};
+	}
+	</script>
+
 </body>
 </html>

@@ -11,6 +11,7 @@ public class User implements java.io.Serializable {
 	private Integer id;
 	private String userName;
 	private String uuid;
+	private int prize;
 
 	// Constructors
 
@@ -30,6 +31,14 @@ public class User implements java.io.Serializable {
 	}
 
 	// Property accessors
+
+	public int getPrize() {
+		return prize;
+	}
+
+	public void setPrize(int prize) {
+		this.prize = prize;
+	}
 
 	public Integer getId() {
 		return this.id;
