@@ -22,8 +22,8 @@ public class TestUserDao extends TestCase {
 	}
 
 	private void updateUser() {
-		User user = userDAO.findById(30);
-		user.setPrize(1);
+		User user = userDAO.findById(31);
+		user.setPrize(1.1);
 		userDAO.update(user);
 	}
 

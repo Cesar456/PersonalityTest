@@ -97,10 +97,10 @@ public class SubjectService extends BaseService {
 		double conscientiousnessResult = (double) conscientiousnessTotle
 				/ (double) JXLUtil.conscientiousness.length;
 
-		System.out.println(neuroticismResult);
-		System.out.println(extraversionResult);
-		System.out.println(opennessResult);
-		System.out.println(agreeablenessFacetsResult);
+//		System.out.println(neuroticismResult);
+//		System.out.println(extraversionResult);
+//		System.out.println(opennessResult);
+//		System.out.println(agreeablenessFacetsResult);
 		System.out.println(conscientiousnessResult);
 
 		result.add(df.format(neuroticismResult));
@@ -119,18 +119,18 @@ public class SubjectService extends BaseService {
 	 * @return
 	 * @throws Exception 
 	 */
-	public void lottery(String userName, int prizeClass) throws Exception {
+	public void lottery(String userName, double prize) throws Exception {
 		User user = new User();
 		List<User> users = getUserDAO().findByUserName(userName);
-		if(prizeClass>7||prizeClass<0){
-			prizeClass = 0;
+		if(prize>7||prize<0){
+			prize = 0;
 		}
 		if (users != null&&users.size()>0) {
 			user = users.get(0);
 		} else {
 			throw new Exception("The user is not exists");
 		}
-		user.setPrize(prizeClass);
+		user.setPrize(prize);
 		getUserDAO().update(user);
 	}
 

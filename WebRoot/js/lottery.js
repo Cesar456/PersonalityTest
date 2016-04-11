@@ -6,11 +6,10 @@ $(document).ready(function(){
 	//旋转次数
 	var rotNum = 0;
 	//中奖公告
-	var notice = "恭喜您获奖，奖金我们将在随后打入您的微博账户";
+	var notice = "";
 	//转盘初始化
 	var color = ["#626262","#787878","rgba(0,0,0,0.5)","#DCC722","white","#FF4350"];
-	var info = ["   1","   2","   2.5","   3","  3.5","   4","  4.5","   5"];
-	var info1 = ['     元','     元','     元','     元','     元','     元','     元','     元'];
+	var info = ["一等奖","二等奖","三等奖","二等奖","三等奖","三等奖","二等奖","三等奖"];
 	canvasRun();
 	$('#tupBtn').bind('click',function(){
 		if (clickNum >= 1) {
@@ -29,7 +28,7 @@ $(document).ready(function(){
 			},6000);
 		}
 		else{
-			alert("亲，抽奖次数已用光！");
+			alert("您已经抽过奖了！");
 		}
 	});
 
@@ -48,55 +47,126 @@ $(document).ready(function(){
 	function probability(){
 		
 		var name = eval(document.getElementById('userName')).value;
+		
 		//获取随机数
 		var num = parseInt(Math.random()*(7 - 0 + 0) + 0);
+		var prize = 0.0;
 		
 		//概率
 		if ( num == 0 ) {
 			angles = 2160 * rotNum + 1800;
-			notice = "奖金我们将在随后打入您的微博账户,谢谢支持"+info[0] + info1[0];
+//			一等奖判定
+			if(Math.random()>0.5){
+				prize = 4.5;
+			}else {
+				prize = 5.0;
+			}
+			notice = info[0];
 		}
 		//概率
 		else if ( num == 1 ) {
 			angles = 2160 * rotNum + 1845;
-			notice = "恭喜您获奖，奖金我们将在随后打入您的微博账户\n"+info[7] + info1[7];
+//			三等奖判定
+			var x = Math.random(); 
+			if(x<0.3){
+				prize =  1.5;
+			}else if (x<0.6) {
+				prize = 2;
+			} else {
+				prize = 2.5;
+			}
+			
+			notice = info[7];
 		}
 		//概率
 		else if ( num == 2 ) {
 			angles = 2160 * rotNum + 1890;
-			notice = "恭喜您获奖，奖金我们将在随后打入您的微博账户\n"+info[6] + info1[6];
+//			二等奖判定
+			var x = Math.random(); 
+			if(x<0.3){
+				prize =  3;
+			}else if (x<0.6) {
+				prize = 3.5;
+			} else {
+				prize = 4;
+			}
+			notice = info[6];
 		}
 		//概率
 		else if ( num == 3 ) {
 			angles = 2160 * rotNum + 1935;
-			notice = "恭喜您获奖，奖金我们将在随后打入您的微博账户\n"+info[5] + info1[5];
+			var x = Math.random(); 
+			if(x<0.3){
+				prize =  1.5;
+			}else if (x<0.6) {
+				prize = 2;
+			} else {
+				prize = 2.5;
+			}
+			notice = info[5];
 		}
 		//概率
 		else if ( num == 4 ) {
 			angles = 2160 * rotNum + 1980;
-			notice = "恭喜您获奖，奖金我们将在随后打入您的微博账户\n"+info[4] + info1[4];
+			var x = Math.random(); 
+			if(x<0.3){
+				prize =  1.5;
+			}else if (x<0.6) {
+				prize = 2;
+			} else {
+				prize = 2.5;
+			}
+			
+			notice = info[4];
 		}
 		//概率
 		else if ( num == 5 ) {
 			angles = 2160 * rotNum + 2025;
-			notice = "恭喜您获奖，奖金我们将在随后打入您的微博账户\n"+info[3] + info1[3];
+			var x = Math.random(); 
+			if(x<0.3){
+				prize =  3;
+			}else if (x<0.6) {
+				prize = 3.5;
+			} else {
+				prize = 4;
+			}
+			notice = info[3];
 		}
 		//概率
 		else if ( num == 6 ) {
 			angles = 2160 * rotNum + 2070;
-			notice = "恭喜您获奖，奖金我们将在随后打入您的微博账户\n"+info[2] + info1[2];
+			var x = Math.random(); 
+			if(x<0.3){
+				prize =  1.5;
+			}else if (x<0.6) {
+				prize = 2;
+			} else {
+				prize = 2.5;
+			}
+			notice = info[2];
 		}
 		//概率
 		else if ( num == 7 ) {
 			angles = 2160 * rotNum + 2115;
-			notice = "恭喜您获奖，奖金我们将在随后打入您的微博账户\n"+info[1] + info1[1];
+			var x = Math.random(); 
+			if(x<0.3){
+				prize =  3;
+			}else if (x<0.6) {
+				prize = 3.5;
+			} else {
+				prize = 4;
+			}
+			notice = info[1];
 		}
-		notice = name + notice;
-		document.getElementById('userName').value= name+num;
+		
+//		document.getElementById('userName').value= num+" " + prize;
+		
+		notice = "恭喜您获得"+notice+prize+"元，奖金稍后发放至微博";
+		
 		$.post("fourth.jsp",
 				  {
 				    name:name,
-				    num:num
+				    prize:prize
 				  });
 	}
 
@@ -151,7 +221,7 @@ $(document).ready(function(){
 		        ctx.fillStyle = color[3];
 		        ctx.fillText(info[i],-30,-115,60);
 		        ctx.font = " 14px Microsoft YaHei";
-		        ctx.fillText(info1[i],-30,-95,60);
+		        ctx.fillText('',-30,-95,60);
 		        ctx.closePath();
 		        ctx.restore();
 		    }

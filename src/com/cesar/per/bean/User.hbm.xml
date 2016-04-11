@@ -18,7 +18,7 @@
 				<comment>uuid</comment>
 			</column>
 		</property>
-		<property name="prize" type="java.lang.Integer">
+		<property name="prize" type="java.lang.Double">
 			<column name="prize"></column>
 		</property>
 	</class>
