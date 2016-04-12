@@ -13,7 +13,7 @@
 	try{
 	name = new String(request.getParameter("qx").getBytes("ISO-8859-1"),"utf-8") ;
 	}catch(Exception e){
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("personality.html");
 	}
 	String s0 = request.getParameter("q0");
 	String s1 = request.getParameter("q1");

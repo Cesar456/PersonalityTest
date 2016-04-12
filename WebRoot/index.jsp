@@ -35,7 +35,7 @@
 				<ol class="fs-fields">
 					<li><label class="fs-field-label fs-anim-upper" for="qx">您的微博名?</label>
 						<input class="fs-anim-lower" id="qx" name="qx" type="text"
-						placeholder="正确的微博名对我们非常重要，谢谢" required />
+						placeholder="正确的微博名对我们非常重要" required />
 					</li>
 					<%
 						for(int i=0;i<subjects.size();i++){
